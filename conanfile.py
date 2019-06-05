@@ -53,6 +53,8 @@ class LibX265Conan(ConanFile):
         if self.settings.os != 'Windows':
             cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
             cmake.definitions['ENABLE_PIC'] = self.options.fPIC
+        if self.settings.os == "Linux" and self.settings.arch == "x86":
+            cmake.definitions["NASM_FLAGS"] = "-f elf32"
         cmake.definitions['HIGH_BIT_DEPTH'] = self.options.bit_depth != 8
         cmake.definitions['MAIN12'] = self.options.bit_depth == 12
         cmake.definitions['ENABLE_HDR10_PLUS'] = self.options.HDR10
