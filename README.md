@@ -12,14 +12,14 @@ The packages generated with this **conanfile** can be found on [Bintray](https:/
 
 ### Basic setup
 
-    $ conan install libx265/2.6@bincrafters/testing
+    $ conan install libx265/3.0@bincrafters/testing
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    libx265/2.6@bincrafters/testing
+    libx265/3.0@bincrafters/testing
 
     [generators]
     cmake
@@ -53,7 +53,7 @@ The following command both runs all the steps of the conan file, and publishes t
 
 ## Upload
 
-    $ conan upload libx265/2.6@bincrafters/testing --all -r bincrafters
+    $ conan upload libx265/3.0@bincrafters/testing --all -r bincrafters
 
 
 ## Conan Recipe License
@@ -61,4 +61,4 @@ The following command both runs all the steps of the conan file, and publishes t
 NOTE: The conan recipe license applies only to the files of this recipe, which can be used to build and package libx265.
 It does *not* in any way apply or is related to the actual software being packaged.
 
-[MIT](https://github.com/bincrafters/conan-libx265.git/blob/testing/2.6/LICENSE.md)
+[MIT](https://github.com/bincrafters/conan-libx265.git/blob/testing/3.0/LICENSE.md)
