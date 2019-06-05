@@ -45,7 +45,7 @@ class LibX265Conan(ConanFile):
             tools.replace_in_file(os.path.join('sources', 'source', 'CMakeLists.txt'),
                                   '${PROJECT_BINARY_DIR}/x265.pdb',
                                   '${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/x265.pdb')
-        cmake = CMake(self, generator='Ninja')
+        cmake = CMake(self, set_cmake_flags=True)
         cmake.definitions['ENABLE_SHARED'] = self.options.shared
         cmake.definitions['ENABLE_LIBNUMA'] = False
         if self.settings.os == "Macos":
@@ -53,8 +53,6 @@ class LibX265Conan(ConanFile):
         if self.settings.os != 'Windows':
             cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
             cmake.definitions['ENABLE_PIC'] = self.options.fPIC
-        if self.settings.os == "Linux" and self.settings.arch == "x86":
-            cmake.definitions["NASM_FLAGS"] = "-f elf32"
         cmake.definitions['HIGH_BIT_DEPTH'] = self.options.bit_depth != 8
         cmake.definitions['MAIN12'] = self.options.bit_depth == 12
         cmake.definitions['ENABLE_HDR10_PLUS'] = self.options.HDR10
