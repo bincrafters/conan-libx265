@@ -8,7 +8,7 @@ import shutil
 
 class LibX265Conan(ConanFile):
     name = "libx265"
-    version = "2.7"
+    version = "3.0"
     homepage = "http://x265.org"
     url = "https://github.com/bincrafters/conan-libx265"
     description = "x265 is the leading H.265 / HEVC encoder software library"
@@ -47,6 +47,7 @@ class LibX265Conan(ConanFile):
                                   '${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/x265.pdb')
         cmake = CMake(self, generator='Ninja')
         cmake.definitions['ENABLE_SHARED'] = self.options.shared
+        cmake.definitions['ENABLE_LIBNUMA'] = False
         if self.settings.os == "Macos":
             cmake.definitions['CMAKE_SHARED_LINKER_FLAGS'] = '-Wl,-read_only_relocs,suppress'
         if self.settings.os != 'Windows':
