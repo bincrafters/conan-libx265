@@ -56,6 +56,8 @@ class LibX265Conan(ConanFile):
         cmake.definitions['HIGH_BIT_DEPTH'] = self.options.bit_depth != 8
         cmake.definitions['MAIN12'] = self.options.bit_depth == 12
         cmake.definitions['ENABLE_HDR10_PLUS'] = self.options.HDR10
+        if self.settings.os == "Linux":
+            cmake.definitions["PLATFORM_LIBS"] = "dl"
         cmake.configure()
         cmake.build()
         cmake.install()
