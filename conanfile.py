@@ -16,7 +16,7 @@ class LibX265Conan(ConanFile):
     exports_sources = ["CMakeLists.txt", "LICENSE"]
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False], "bit_depth": [8, 10, 12], "HDR10": [True, False]}
-    default_options = "shared=False", "fPIC=True", "bit_depth=8", "HDR10=False"
+    default_options = {'shared': False, 'fPIC': True, 'bit_depth': '8', 'HDR10': False}
     generators = ['cmake']
     build_requires = "nasm_installer/2.13.02@bincrafters/stable", "ninja_installer/1.8.2@bincrafters/stable"
 
