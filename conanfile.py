@@ -14,7 +14,7 @@ class LibX265Conan(ConanFile):
     url = "https://github.com/bincrafters/conan-libx265"
     author = "bincrafters <bincrafters@gmail.com>"
     description = "x265 is the leading H.265 / HEVC encoder software library"
-    license = "https://github.com/someauthor/somelib/blob/master/LICENSES"
+    license = "https://bitbucket.org/multicoreware/x265/src/default/COPYING"  # GPL-2.0-only + commercial
     exports_sources = ["CMakeLists.txt", "LICENSE"]
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False], "bit_depth": [8, 10, 12], "HDR10": [True, False]}
