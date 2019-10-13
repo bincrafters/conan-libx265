@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from conans import ConanFile, CMake, tools
 import os
 import shutil
@@ -10,9 +7,9 @@ class LibX265Conan(ConanFile):
     name = "libx265"
     version = "3.0"
     homepage = "http://x265.org"
-    topics = "conan", "libx265", "codec", "video", "H.265",
+    topics = ("conan", "libx265", "codec", "video", "H.265")
     url = "https://github.com/bincrafters/conan-libx265"
-    author = "bincrafters <bincrafters@gmail.com>"
+    author = "Bincrafters <bincrafters@gmail.com>"
     description = "x265 is the leading H.265 / HEVC encoder software library"
     license = "https://bitbucket.org/multicoreware/x265/src/default/COPYING"  # GPL-2.0-only + commercial
     exports_sources = ["CMakeLists.txt", "LICENSE"]
@@ -20,7 +17,7 @@ class LibX265Conan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False], "bit_depth": [8, 10, 12], "HDR10": [True, False]}
     default_options = {'shared': False, 'fPIC': True, 'bit_depth': '8', 'HDR10': False}
     generators = ['cmake']
-    build_requires = "nasm_installer/2.13.02@bincrafters/stable", "ninja_installer/1.8.2@bincrafters/stable"
+    build_requires = "nasm/2.13.02", "ninja/1.9.0"
 
     def config_options(self):
         if self.settings.os == 'Windows':
