@@ -44,6 +44,11 @@ class LibX265Conan(ConanFile):
             tools.replace_in_file(os.path.join('sources', 'source', 'CMakeLists.txt'),
                                   '${PROJECT_BINARY_DIR}/x265.pdb',
                                   '${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/x265.pdb')
+        elif self.settings.os == "Android":
+            tools.replace_in_file(os.path.join('sources', 'source', 'CMakeLists.txt'),
+                "list(APPEND PLATFORM_LIBS pthread)", "")
+            tools.replace_in_file(os.path.join('sources', 'source', 'CMakeLists.txt'),
+                "list(APPEND PLATFORM_LIBS rt)", "")
         cmake = CMake(self, set_cmake_flags=True)
         cmake.definitions['ENABLE_SHARED'] = self.options.shared
         cmake.definitions['ENABLE_LIBNUMA'] = False
@@ -75,8 +80,12 @@ class LibX265Conan(ConanFile):
         self.cpp_info.libs = ['x265']
         if self.settings.os == "Linux":
             self.cpp_info.libs.extend(['dl', 'pthread', 'm'])
+        if self.settings.os == "Android":
+            self.cpp_info.libs.extend(['dl', 'm'])
         libcxx = self.settings.get_safe("compiler.libcxx")
         if libcxx in ["libstdc++", "libstdc++11"]:
             self.cpp_info.libs.append("stdc++")
         elif libcxx == "libc++":
             self.cpp_info.libs.append("c++")
+        elif libcxx in ["c++_static", "c++_shared"]:
+            self.cpp_info.libs.extend([libcxx, "c++abi"])
