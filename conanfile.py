@@ -88,3 +88,4 @@ class LibX265Conan(ConanFile):
             self.cpp_info.libs.append("c++")
         elif libcxx in ["c++_static", "c++_shared"]:
             self.cpp_info.libs.extend([libcxx, "c++abi"])
+        self.cpp_info.names['pkg_config'] = 'x265'
